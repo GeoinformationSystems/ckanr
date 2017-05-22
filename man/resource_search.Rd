@@ -5,7 +5,7 @@
 \title{Search for resources.}
 \usage{
 resource_search(q, sort = NULL, offset = NULL, limit = NULL,
-  url = get_default_url(), as = "list", ...)
+  url = get_default_url(), key = get_default_key(), as = "list", ...)
 }
 \arguments{
 \item{q}{Query terms. It is a string of the form \code{field:term} or a list
