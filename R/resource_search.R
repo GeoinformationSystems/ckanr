@@ -22,9 +22,9 @@
 #' resource_search(q = 'name:data', limit = 2, as = 'table')
 #' }
 resource_search <- function(q, sort = NULL, offset = NULL, limit = NULL,
-                            url = get_default_url(), as = 'list', ...) {
+                            url = get_default_url(), key = get_default_key(), as = 'list', ...) {
   args <- cc(list(query = q, order_by = sort, offset = offset, limit = limit))
-  res <- ckan_GET(url, 'resource_search', args, ...)
+  res <- ckan_GET(url, 'resource_search', key, args, ...)
   switch(as, json = res,
          list = {
            tmp <- jsl(res)

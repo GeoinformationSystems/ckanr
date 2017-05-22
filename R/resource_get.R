@@ -1,4 +1,4 @@
-#' Show a resource.
+#' Get a resource.
 #'
 #' @export
 #'
@@ -20,16 +20,15 @@
 #'                        rcurl = "http://google.com"
 #' ))
 #'
-#' # show the resource
-#' resource_show(xx$id)
+#' # downloads the resource
+#' resource_get(xx$id)
 #'
+#' # process downloaded file, e.g. read as table
+#' x <- resource_get(xx$id)
+#' table <- read.table(textConnection(x))
 #'
-#' # eg. from the NHM CKAN store
-#' resource_show(id = "05ff2255-c38a-40c9-b657-4ccb55ab2feb",
-#'               url = "http://data.nhm.ac.uk")
 #' }
-resource_show <- function(id, url = get_default_url(), key = get_default_key(), as = 'list', ...) {
+resource_get <- function(id, url = get_default_url(), key = get_default_key(), as = 'list', ...) {
   id <- as.ckan_resource(id, url = url)
-  res <- ckan_GET(url, 'resource_show', list(id = id$id), key, ...)
-  switch(as, json = res, list = as_ck(jsl(res), "ckan_resource"), table = jsd(res))
+  res <- ckan_GET(id$url, 'resource_get', list(id = id$id), key, ...)
 }

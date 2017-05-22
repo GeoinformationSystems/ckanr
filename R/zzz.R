@@ -18,20 +18,30 @@ ckan_DELETE <- function(url, method, body = NULL, key = NULL, ...){
 ckan_VERB <- function(verb, url, method, body, key, ...) {
   VERB <- getExportedValue("httr", verb)
   url <- notrail(url)
-  if (is.null(key)) {
-    # no authentication
-    if (is.null(body) || length(body) == 0) {
-      res <- VERB(file.path(url, ck(), method), ctj(), ...)
+  if(method=="resource_get"){
+    if (is.null(key)) {
+      res <- VERB(file.path(url))
     } else {
-      res <- VERB(file.path(url, ck(), method), body = body, ...)
+      # authentication
+      api_key_header <- add_headers("X-CKAN-API-Key" = key)
+      res <- VERB(file.path(url), api_key_header, ...)
     }
   } else {
-    # authentication
-    api_key_header <- add_headers("X-CKAN-API-Key" = key)
-    if (is.null(body) || length(body) == 0) {
-      res <- VERB(file.path(url, ck(), method), ctj(), api_key_header, ...)
+    if (is.null(key)) {
+      # no authentication
+      if (is.null(body) || length(body) == 0) {
+        res <- VERB(file.path(url, ck(), method), ctj(), ...)
+      } else {
+        res <- VERB(file.path(url, ck(), method), body = body, ...)
+      }
     } else {
-      res <- VERB(file.path(url, ck(), method), body = body, api_key_header, ...)
+      # authentication
+      api_key_header <- add_headers("X-CKAN-API-Key" = key)
+      if (is.null(body) || length(body) == 0) {
+        res <- VERB(file.path(url, ck(), method), ctj(), api_key_header, ...)
+      } else {
+        res <- VERB(file.path(url, ck(), method), body = body, api_key_header, ...)
+      }
     }
   }
   err_handler(res)

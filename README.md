@@ -1,13 +1,8 @@
 ckanr
 =====
 
+This is the forked version of [ropensci/ckanr](https://github.com/ropensci/ckanr) and it fixes the issue of not getting read access to private data sets even if correct access rights are present.
 
-
-[![Build Status](https://api.travis-ci.org/ropensci/ckanr.png)](https://travis-ci.org/ropensci/ckanr)
-[![Build status](https://ci.appveyor.com/api/projects/status/5yqd882v4fbeggd5?svg=true)](https://ci.appveyor.com/project/sckott/ckanr)
-[![codecov.io](https://codecov.io/github/ropensci/ckanr/coverage.svg?branch=master)](https://codecov.io/github/ropensci/ckanr?branch=master)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/ckanr?color=FAB657)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/ckanr)](https://cran.r-project.org/package=ckanr)
 
 ## Description
 
@@ -17,19 +12,12 @@ CKAN is an open source set of tools for hosting and providing data on the web. (
 
 ## Installation
 
-Stable CRAN version
-
-
-```r
-install.packages("ckanr")
-```
-
 Development version
 
 
 ```r
 install.packages("devtools")
-devtools::install_github("ropensci/ckanr")
+devtools::install_github("GeoinformationSystems/ckanr")
 ```
 
 
@@ -329,5 +317,3 @@ NA
 * License: MIT
 * Get citation information for `ckanr` in R doing `citation(package = 'ckanr')`
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
-
-[![ropensci](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
